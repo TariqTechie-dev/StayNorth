@@ -28,11 +28,10 @@ app.use(methodOverride("_method"));
 
 app.engine("ejs", ejsMate);
 
-// const MONGO_URL = "mongodb://127.0.0.1:27017/WanderLust";
-const dbUrl = process.env.ATLASDB_URL;
+const dbUrl = process.env.ATLASDB_URL || "mongodb://127.0.0.1:27017/WanderLust";
 
 async function main() {
-  await mongoose.connect(dbUrl);
+  await mongoose.connect(dbUrl, );
 }
 
 main()
