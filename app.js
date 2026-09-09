@@ -28,10 +28,10 @@ app.use(methodOverride("_method"));
 
 app.engine("ejs", ejsMate);
 
-const dbUrl = process.env.ATLASDB_URL || "mongodb://127.0.0.1:27017/WanderLust";
+const dbUrl =  process.env.ATLASDB_URL;//"mongodb://127.0.0.1:27017/WanderLust";
 
 async function main() {
-  await mongoose.connect(dbUrl, );
+  await mongoose.connect(dbUrl);
 }
 
 main()
@@ -52,7 +52,7 @@ store.on("error", function (e) {
 });
 
 const sessionoptions = {
-    store,
+  store,
   secret: process.env.SECRET,
   resave: false,
   saveUninitialized: true,
@@ -79,6 +79,10 @@ app.use((req, res, next) => {
   res.locals.errormsg = req.flash("error");
   res.locals.currentUser = req.user;
   next();
+});
+
+app.get("/", (req, res) => {
+  res.redirect("/listings");
 });
 
 app.use("/listings", listingsRoutes);
