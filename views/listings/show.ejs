@@ -13,7 +13,7 @@
   
   <div class="col-12 col-md-8 offset-md-2">
     <div class="card h-100 listing-card">
-      <img src="<%= listing.image.url %>" class="card-img-top show-img" alt="listing_image" />
+      <img src="<%= listing.image.url %>" class="card-img-top show-img" alt="<%= listing.title %>" />
       <div class="card-body">
         <p class="text-muted mb-1">
           <i class="fa-solid fa-location-dot"></i>
@@ -31,7 +31,6 @@
         <p class="card-text"><%= listing.description %></p>
         <p class="card-text text-muted"><small>Hosted by <i><%= listing.owner.username %></i></small></p>
       </div>
-      <hr>
     </div>
   </div>
 
@@ -60,7 +59,7 @@
         <div class="mt-3">
           <strong id="booking-total" class="text-muted">Select dates to see total</strong>
         </div>
-        <button class="btn btn-dark w-100 mt-2">Reserve</button>
+        <button class="btn btn-brand w-100 mt-2">Reserve</button>
       </form>
     </div>
   </div>
@@ -93,7 +92,7 @@
   <div class="col-12 col-md-8 offset-md-2 mb-3">
     <div class="card shadow-sm p-3 text-center">
       <p class="mb-2">Want to book this stay?</p>
-      <a href="/login" class="btn btn-dark">Log in to book</a>
+      <a href="/login" class="btn btn-brand">Log in to book</a>
     </div>
   </div>
   <% } %>
@@ -114,16 +113,16 @@
   <div class="col-12 col-md-8 offset-md-2 mb-3 mt-3">
     <% if(currentUser && !currentUser._id.equals(listing.owner._id)) { %>
     <div class="card shadow-sm p-3 p-md-4">
-      <h3 class="mb-3 fs-5 fs-md-6">Share your experience</h3>
+      <h3 class="mb-3 fs-5">Share your experience</h3>
       <form action="/listings/<%= listing._id %>/reviews" method="post" novalidate class="needs-validation">
 
         <!-- Star Rating -->
         <div class="mb-3">
           <label class="form-label">Rating</label><br>
           <div class="star-rating">
-            <label><input type="radio" name="review[rating]" value="5"><i class="fa-solid fa-star"></i></label>
+            <label><input type="radio" name="review[rating]" value="5" required><i class="fa-solid fa-star"></i></label>
             <label><input type="radio" name="review[rating]" value="4"><i class="fa-solid fa-star"></i></label>
-            <label><input type="radio" name="review[rating]" value="3" checked><i class="fa-solid fa-star"></i></label>
+            <label><input type="radio" name="review[rating]" value="3"><i class="fa-solid fa-star"></i></label>
             <label><input type="radio" name="review[rating]" value="2"><i class="fa-solid fa-star"></i></label>
             <label><input type="radio" name="review[rating]" value="1"><i class="fa-solid fa-star"></i></label>
           </div>
@@ -132,7 +131,7 @@
         <!-- Comment -->
         <div class="mb-3">
           <label for="comment" class="form-label">Comments</label>
-          <textarea name="review[comment]" id="comment" cols="30" rows="4" class="form-control" required></textarea>
+          <textarea name="review[comment]" id="comment" cols="30" rows="4" maxlength="500" class="form-control" required></textarea>
           <div class="invalid-feedback">
             Please submit some comment for review.
           </div>
@@ -153,7 +152,7 @@
         <h5 class="mb-1 fs-6">
           <%= review.author.username %>
         </h5>
-        <p class="mb-1 fs-7">
+        <p class="mb-1">
           <%= review.comment %>
         </p>
         <small class="text-muted">
@@ -169,7 +168,7 @@
   </div>
   
   <div class="col-12 col-md-8 offset-md-2 mb-3">
-    <h3 class="mb-3 fs-5 fs-md-6">Where you'll be</h3>
+    <h3 class="mb-3 fs-5">Where you'll be</h3>
     <div id="map" data-location="<%= [listing.location, listing.country].filter(Boolean).join(', ') %>" data-title="<%= listing.title %>"></div>
   </div>
 </div>

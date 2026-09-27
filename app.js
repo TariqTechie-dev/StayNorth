@@ -8,7 +8,6 @@ const methodOverride = require("method-override");
 const Listing = require("./models/listing.js");
 const ejsMate = require("ejs-mate");
 const path = require("path");
-const ExpressError = require("./Utils/ExpressError.js");
 const session = require("express-session");
 const { MongoStore } = require("connect-mongo");
 const flash = require("connect-flash");
@@ -120,14 +119,27 @@ app.get("/terms", (req, res) => {
   res.render("pages/terms.ejs");
 });
 
-// 404 HANDLER
+// 404 HANDLER — renders the branded 404 page
 app.use((req, res, next) => {
-  next(new ExpressError("Page Not Found", 404));
+  res.status(404).render("pages/404.ejs");
 });
 
 // ERROR HANDLING MIDDLEWARE
 app.use((err, req, res, next) => {
   let { statusCode = 500, message = "Something went wrong" } = err;
+
+  
+  if (err.name === "CastError") {
+    statusCode = 404;
+  }
+  if (statusCode === 404) {
+    return res.status(404).render("pages/404.ejs");
+  }
+  
+  if (statusCode >= 500) {
+    console.error(err);
+    message = "Something went wrong on our end. Please try again later.";
+  }
 
   res.status(statusCode).render("error.ejs", { message });
 });

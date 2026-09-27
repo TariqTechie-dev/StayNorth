@@ -7,11 +7,18 @@ const Booking = require("./models/booking.js");
 
 
 module.exports.isLoggedIn = (req, res, next) => {
-    //  console.log(req)
     if (!req.isAuthenticated()) {
         req.session.redirectUrl=req.originalUrl
         req.flash("error", "You must be signed in to access this page");
         return res.redirect("/login");
+    }
+    next();
+}
+
+
+module.exports.redirectIfLoggedIn = (req, res, next) => {
+    if (req.isAuthenticated()) {
+        return res.redirect("/listings");
     }
     next();
 }

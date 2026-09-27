@@ -3,7 +3,7 @@ const router = express.Router();
 const Usercontroller = require("../controllers/user.js");
 const wrapAsync = require("../Utils/WrapAsync");
 const passport = require("passport");
-const { saveRedirectUrl, storeRedirectUrl } = require("../middleware.js");
+const { saveRedirectUrl, storeRedirectUrl, redirectIfLoggedIn } = require("../middleware.js");
 const rateLimit = require("express-rate-limit");
 
 const authLimiter = rateLimit({
@@ -15,14 +15,14 @@ const authLimiter = rateLimit({
 router
   .route("/signup")
   // render signup form
-  .get(Usercontroller.rendersignupform)
+  .get(redirectIfLoggedIn, Usercontroller.rendersignupform)
   //  create new user
   .post(authLimiter, wrapAsync(Usercontroller.signup));
 
 router
   .route("/login")
   // render login form
-  .get(storeRedirectUrl, Usercontroller.renderloginform)
+  .get(redirectIfLoggedIn, storeRedirectUrl, Usercontroller.renderloginform)
   //  login existing account
   .post(
     authLimiter,

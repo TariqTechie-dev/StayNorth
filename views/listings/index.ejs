@@ -80,7 +80,7 @@
 
   <% if (searchQuery) { %>
     <div class="d-flex align-items-center justify-content-between mt-3 mb-2">
-      <p class="mb-0 text-muted">Showing results for "<strong><%= searchQuery %></strong>"</p>
+      <p class="mb-0 text-muted">Showing results for <strong><%= searchQuery %></strong></p>
       <a href="/listings" class="btn btn-sm btn-outline-dark">Clear search</a>
     </div>
   <% } %>
@@ -100,8 +100,7 @@
       <a href="/listings/<%= listing._id %>" class="text-decoration-none text-dark">
 
         <div class="card h-100 listing-card">
-          <img src="<%= listing.image.url %>" class="card-img-top listing-index-img" alt="Listing_image">
-          <div class="card-img-overlay"></div>
+          <img src="<%= listing.image.url %>" class="card-img-top listing-index-img" alt="<%= listing.title %>">
 
           <div class="card-body">
             <p class="card-text">

@@ -82,6 +82,17 @@ footer {
   font-weight: 500;
 }
 
+.f-info-tagline {
+  color: #6c757d;
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.f-info-copy {
+  color: #6c757d;
+  font-size: 0.8rem;
+}
+
 /*  listing cards */
 
 .listing-card{
@@ -99,7 +110,9 @@ footer {
 }
 
 .listing-index-img {
-  height: 14rem;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
 }
 
 .card-body{
@@ -343,14 +356,6 @@ textarea.form-control {
     padding-right: 0.75rem;
   }
 
-  .listing-index-img {
-    height: 12rem;
-  }
-
-  .md-3 {
-    margin-bottom: 0.6rem !important;
-  }
-
   .form-label {
     font-size: 0.9rem;
   }
@@ -372,25 +377,10 @@ textarea.form-control {
   body {
     font-size: 15px;
   }
-
-  .listing-index-img {
-    height: 13rem;
-  }
-}
-
-/* Media Query: Tablet (768px - 1024px) */
-@media (min-width: 768px) and (max-width: 1024px) {
-  .listing-index-img {
-    height: 15rem;
-  }
 }
 
 /* Media Query: Large Desktop (1440px+) */
 @media (min-width: 1440px) {
-  .listing-index-img {
-    height: 16rem;
-  }
-
   .container,
   .container-lg,
   .container-md,
@@ -399,4 +389,18 @@ textarea.form-control {
   .container-xxl {
     max-width: 1320px;
   }
+}
+
+/* Brand primary button — unified CTA color across the site */
+.btn-brand {
+  background-color: #fe424d;
+  border-color: #fe424d;
+  color: #fff;
+}
+.btn-brand:hover,
+.btn-brand:focus,
+.btn-brand:active {
+  background-color: #e63946;
+  border-color: #e63946;
+  color: #fff;
 }

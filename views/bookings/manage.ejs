@@ -6,8 +6,11 @@
   </div>
 
   <% if (bookings.length === 0) { %>
-  <div class="col-12">
-    <p class="text-muted">No bookings on your listings yet.</p>
+  <div class="col-12 text-center py-5">
+    <i class="fa-solid fa-calendar-check fa-3x text-muted mb-3"></i>
+    <h4 class="mb-2">No bookings yet</h4>
+    <p class="text-muted mb-4">When guests book your listings, their reservations will appear here.</p>
+    <a href="/listings/new" class="btn btn-brand">List your stay</a>
   </div>
   <% } else { %>
   <div class="col-12">
