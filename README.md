@@ -10,6 +10,7 @@
 - 🏠 Full CRUD for stay listings — only the owner can edit or delete
 - 🏷️ Filter stays by category
 - 🔎 Search stays by destination (title, location, country)
+- 📅 Book stays with date picker, live price calculation and double-booking prevention
 - 🖼️ Image uploads with Cloudinary
 - ⭐ Reviews with star ratings (only the author can delete)
 - 🗺️ Interactive location map (Leaflet + OpenStreetMap)

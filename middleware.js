@@ -2,6 +2,7 @@ const ExpressError = require("./Utils/ExpressError.js");
 const { listingSchema, reviewSchema } = require("./schema.js");
 const Listing = require("./models/listing");
 const Review = require("./models/review.js");
+const Booking = require("./models/booking.js");
 
 
 
@@ -84,3 +85,23 @@ module.exports.isReviewAuthor=async(req,res,next)=>{
     }
     next();
 }
+
+module.exports.validateBooking = (req, res, next) => {
+    const { bookingSchema } = require("./schema.js");
+    const { error } = bookingSchema.validate(req.body);
+    if (error) {
+        let msg = error.details.map(el => el.message).join(",");
+        throw new ExpressError(msg, 400);
+    }
+    next();
+};
+
+module.exports.isBookingGuest = async (req, res, next) => {
+    const { bookingId } = req.params;
+    const booking = await Booking.findById(bookingId);
+    if (!booking || !booking.guest.equals(req.user._id)) {
+        req.flash("error", "You don't have permission to do that");
+        return res.redirect("/bookings");
+    }
+    next();
+};

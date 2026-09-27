@@ -34,6 +34,69 @@
     </div>
   </div>
 
+  <% if (currentUser && !currentUser._id.equals(listing.owner._id)) { %>
+  <div class="col-12 col-md-8 offset-md-2 mb-3">
+    <div class="card shadow-sm p-3 p-md-4" id="booking-card" data-price="<%= listing.price %>">
+      <h4 class="fs-5 mb-1">Rs <%= listing.price.toLocaleString("en-PK") %> <span class="text-muted fs-6 fw-normal">/ night</span></h4>
+      <form action="/listings/<%= listing._id %>/bookings" method="POST" novalidate class="needs-validation">
+        <div class="row g-2 mt-2">
+          <div class="col-6">
+            <label class="form-label" for="checkIn">Check-in</label>
+            <input type="date" id="checkIn" name="booking[checkIn]" class="form-control" required min="<%= new Date().toISOString().split('T')[0] %>">
+            <div class="invalid-feedback">Select a check-in date</div>
+          </div>
+          <div class="col-6">
+            <label class="form-label" for="checkOut">Check-out</label>
+            <input type="date" id="checkOut" name="booking[checkOut]" class="form-control" required min="<%= new Date().toISOString().split('T')[0] %>">
+            <div class="invalid-feedback">Select a check-out date</div>
+          </div>
+          <div class="col-12">
+            <label class="form-label" for="guests">Guests</label>
+            <input type="number" id="guests" name="booking[guests]" class="form-control" value="1" min="1" max="20" required>
+            <div class="invalid-feedback">Enter number of guests (1-20)</div>
+          </div>
+        </div>
+        <div class="mt-3">
+          <strong id="booking-total" class="text-muted">Select dates to see total</strong>
+        </div>
+        <button class="btn btn-dark w-100 mt-2">Reserve</button>
+      </form>
+    </div>
+  </div>
+  <script>
+    (() => {
+      const card = document.getElementById("booking-card");
+      if (!card) return;
+      const pricePerNight = Number(card.dataset.price);
+      const checkInEl = document.getElementById("checkIn");
+      const checkOutEl = document.getElementById("checkOut");
+      const totalEl = document.getElementById("booking-total");
+      const updateTotal = () => {
+        const checkIn = new Date(checkInEl.value);
+        const checkOut = new Date(checkOutEl.value);
+        const nights = Math.round((checkOut - checkIn) / 86400000);
+        if (checkInEl.value && checkOutEl.value && nights > 0) {
+          totalEl.textContent = `Rs ${(nights * pricePerNight).toLocaleString("en-PK")} for ${nights} night${nights > 1 ? "s" : ""}`;
+          totalEl.classList.remove("text-muted");
+        } else {
+          totalEl.textContent = "Select dates to see total";
+          totalEl.classList.add("text-muted");
+        }
+        if (checkInEl.value) checkOutEl.min = checkInEl.value;
+      };
+      checkInEl.addEventListener("change", updateTotal);
+      checkOutEl.addEventListener("change", updateTotal);
+    })();
+  </script>
+  <% } else if (!currentUser) { %>
+  <div class="col-12 col-md-8 offset-md-2 mb-3">
+    <div class="card shadow-sm p-3 text-center">
+      <p class="mb-2">Want to book this stay?</p>
+      <a href="/login" class="btn btn-dark">Log in to book</a>
+    </div>
+  </div>
+  <% } %>
+
   <!-- btn section for edit and delete only for the owner of the listing -->
   <% if(currentUser && currentUser._id.equals(listing.owner._id)) { %>
   <div class="col-12 col-md-8 offset-md-2">

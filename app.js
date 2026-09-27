@@ -17,6 +17,7 @@ const LocalStrategy = require("passport-local");
 const listingsRoutes = require("./routes/listing.js");
 const reviewsRoutes = require("./routes/review.js");
 const userRoutes = require("./routes/user.js");
+const bookingRoutes = require("./routes/booking.js");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "/views"));
@@ -87,6 +88,7 @@ app.get("/", (req, res) => {
 
 app.use("/listings", listingsRoutes);
 app.use("/listings/:id/reviews", reviewsRoutes);
+app.use("/", bookingRoutes);
 app.use("/", userRoutes);
 
 // 404 HANDLER

@@ -1,0 +1,56 @@
+<% layout("layouts/boilerplate") %>
+
+<div class="row mt-3 mt-md-4 mb-4 g-3">
+  <div class="col-12">
+    <h1 class="fs-3">Bookings on my listings</h1>
+  </div>
+
+  <% if (bookings.length === 0) { %>
+  <div class="col-12">
+    <p class="text-muted">No bookings on your listings yet.</p>
+  </div>
+  <% } else { %>
+  <div class="col-12">
+    <div class="table-responsive">
+      <table class="table table-striped align-middle">
+        <thead>
+          <tr>
+            <th scope="col">Listing</th>
+            <th scope="col">Guest</th>
+            <th scope="col">Check-in</th>
+            <th scope="col">Check-out</th>
+            <th scope="col">Guests</th>
+            <th scope="col">Total</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for (const booking of bookings) { %>
+          <tr>
+            <td>
+              <% if (booking.listing) { %>
+              <a href="/listings/<%= booking.listing._id %>"><%= booking.listing.title %></a>
+              <% } else { %>
+              Listing no longer available
+              <% } %>
+            </td>
+            <td><%= booking.guest ? booking.guest.username : "Former guest" %></td>
+            <td><%= new Date(booking.checkIn).toLocaleDateString("en-PK") %></td>
+            <td><%= new Date(booking.checkOut).toLocaleDateString("en-PK") %></td>
+            <td><%= booking.guests %></td>
+            <td>Rs <%= booking.totalPrice.toLocaleString("en-PK") %></td>
+            <td>
+              <% if (booking.status === "confirmed") { %>
+              <span class="badge bg-success">Confirmed</span>
+              <% } else { %>
+              <span class="badge bg-secondary">Cancelled</span>
+              <% } %>
+            </td>
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <% } %>
+</div>
