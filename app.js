@@ -21,8 +21,10 @@ app.use(
   helmet({
     contentSecurityPolicy: false,
     crossOriginEmbedderPolicy: false,
-  }),
+    referrerPolicy: { policy: "no-referrer-when-downgrade" },
+  })
 );
+
 
 const listingsRoutes = require("./routes/listing.js");
 const reviewsRoutes = require("./routes/review.js");
