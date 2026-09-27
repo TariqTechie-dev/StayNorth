@@ -17,6 +17,7 @@
 - ✅ Server-side validation with Joi
 - 💬 Flash messages for user feedback
 - 📱 Fully responsive design (Bootstrap 5)
+- 🛡️ Security headers (Helmet) and rate limiting on all routes + stricter limits on login/signup
 
 ## Tech Stack
 

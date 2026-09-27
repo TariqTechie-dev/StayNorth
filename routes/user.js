@@ -4,13 +4,20 @@ const Usercontroller = require("../controllers/user.js");
 const wrapAsync = require("../Utils/WrapAsync");
 const passport = require("passport");
 const { saveRedirectUrl, storeRedirectUrl } = require("../middleware.js");
+const rateLimit = require("express-rate-limit");
+
+const authLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 20,
+  message: "Too many attempts from this IP, please try again after 15 minutes.",
+});
 
 router
   .route("/signup")
   // render signup form
   .get(Usercontroller.rendersignupform)
   //  create new user
-  .post(wrapAsync(Usercontroller.signup));
+  .post(authLimiter, wrapAsync(Usercontroller.signup));
 
 router
   .route("/login")
@@ -18,6 +25,7 @@ router
   .get(storeRedirectUrl, Usercontroller.renderloginform)
   //  login existing account
   .post(
+    authLimiter,
     saveRedirectUrl,
     passport.authenticate("local", {
       failureFlash: true,
