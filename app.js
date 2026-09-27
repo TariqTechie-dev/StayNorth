@@ -28,7 +28,7 @@ app.use(methodOverride("_method"));
 
 app.engine("ejs", ejsMate);
 
-const dbUrl =  process.env.ATLASDB_URL;//"mongodb://127.0.0.1:27017/WanderLust";
+const dbUrl =  process.env.ATLASDB_URL;//"mongodb://127.0.0.1:27017/StayNorth";
 
 async function main() {
   await mongoose.connect(dbUrl);

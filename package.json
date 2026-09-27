@@ -1,22 +1,19 @@
 {
- 
-    "engines": {
-      "node": "24.11.1"
-    } 
-  ,
-  "name": "majorproject",
+  "name": "staynorth",
   "version": "1.0.0",
-  "description": "",
+  "description": "StayNorth — a full-stack web app for discovering and listing vacation stays across northern Pakistan",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon app.js"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["travel", "stays", "booking", "nodejs", "express", "mongodb", "ejs"],
+  "author": "Tariq Hussain",
   "license": "ISC",
   "type": "commonjs",
+  "engines": {
+    "node": "24.11.1"
+  },
   "dependencies": {
     "cloudinary": "^2.10.0",
     "connect-flash": "^0.1.1",
