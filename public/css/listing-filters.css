@@ -73,6 +73,7 @@
 }
 
 .filter-item {
+  text-decoration: none;
   display: flex;
   flex: 0 0 auto;
   flex-direction: column;

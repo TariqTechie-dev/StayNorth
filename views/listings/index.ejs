@@ -10,46 +10,50 @@
       </button>
 
       <div class="filter-scroll" aria-label="Listing categories">
-        <button class="filter-item active" type="button">
+        <a href="/listings" class="filter-item <%= selectedCategory === 'all' ? 'active' : '' %>">
+          <i class="fa-solid fa-border-all"></i>
+          <span>All</span>
+        </a>
+        <a href="/listings?category=trending" class="filter-item <%= selectedCategory === 'trending' ? 'active' : '' %>">
           <i class="fa-solid fa-fire"></i>
           <span>Trending</span>
-        </button>
-        <button class="filter-item" type="button">
+        </a>
+        <a href="/listings?category=rooms" class="filter-item <%= selectedCategory === 'rooms' ? 'active' : '' %>">
           <i class="fa-solid fa-bed"></i>
           <span>Rooms</span>
-        </button>
-        <button class="filter-item" type="button">
+        </a>
+        <a href="/listings?category=iconic-cities" class="filter-item <%= selectedCategory === 'iconic-cities' ? 'active' : '' %>">
           <i class="fa-solid fa-city"></i>
           <span>Iconic cities</span>
-        </button>
-        <button class="filter-item" type="button">
+        </a>
+        <a href="/listings?category=mountains" class="filter-item <%= selectedCategory === 'mountains' ? 'active' : '' %>">
           <i class="fa-solid fa-mountain-sun"></i>
           <span>Mountains</span>
-        </button>
-        <button class="filter-item" type="button">
+        </a>
+        <a href="/listings?category=castles" class="filter-item <%= selectedCategory === 'castles' ? 'active' : '' %>">
           <i class="fa-brands fa-fort-awesome"></i>
           <span>Castles</span>
-        </button>
-        <button class="filter-item" type="button">
+        </a>
+        <a href="/listings?category=amazing-pools" class="filter-item <%= selectedCategory === 'amazing-pools' ? 'active' : '' %>">
           <i class="fa-solid fa-person-swimming"></i>
           <span>Amazing pools</span>
-        </button>
-        <button class="filter-item" type="button">
+        </a>
+        <a href="/listings?category=camping" class="filter-item <%= selectedCategory === 'camping' ? 'active' : '' %>">
           <i class="fa-solid fa-campground"></i>
           <span>Camping</span>
-        </button>
-        <button class="filter-item" type="button">
+        </a>
+        <a href="/listings?category=farms" class="filter-item <%= selectedCategory === 'farms' ? 'active' : '' %>">
           <i class="fa-solid fa-tractor"></i>
           <span>Farms</span>
-        </button>
-        <button class="filter-item" type="button">
+        </a>
+        <a href="/listings?category=arctic" class="filter-item <%= selectedCategory === 'arctic' ? 'active' : '' %>">
           <i class="fa-solid fa-snowflake"></i>
           <span>Arctic</span>
-        </button>
-        <button class="filter-item" type="button">
+        </a>
+        <a href="/listings?category=boats" class="filter-item <%= selectedCategory === 'boats' ? 'active' : '' %>">
           <i class="fa-solid fa-sailboat"></i>
           <span>Boats</span>
-        </button>
+        </a>
       </div>
 
       <button class="filter-arrow filter-arrow-right" type="button" aria-label="Show more filters">
@@ -58,13 +62,8 @@
     </div>
 
     <div class="listing-filter-actions">
-      <button class="filter-action-btn" type="button">
-        <i class="fa-solid fa-sliders"></i>
-        <span>Filters</span>
-      </button>
-
       <label class="tax-toggle" for="taxSwitch">
-        <span>Display total before taxes</span>
+        <span>Prices include 16% GST</span>
         <input class="tax-toggle-input" type="checkbox" id="taxSwitch">
         <span class="tax-toggle-slider" aria-hidden="true"></span>
       </label>
@@ -87,7 +86,7 @@
               <b>
                 <%= listing.title %>
               </b><br>
-              Rs <%= listing.price.toLocaleString("en-PK") %>/night
+              <span class="listing-price" data-base-price="<%= listing.price %>">Rs <%= listing.price.toLocaleString("en-PK") %>/night</span>
             </p>
           </div>
         </div>

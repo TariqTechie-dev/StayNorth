@@ -1,10 +1,30 @@
 const Listing = require("../models/listing.js");
 
-// render all listings
+// render all listings (with optional category filter)
 module.exports.index = async (req, res) => {
-  const alllistings = await Listing.find({});
+  const { category } = req.query;
+  const validCategories = [
+    "trending",
+    "rooms",
+    "iconic-cities",
+    "mountains",
+    "castles",
+    "amazing-pools",
+    "camping",
+    "farms",
+    "arctic",
+    "boats",
+  ];
 
-  res.render("listings/index.ejs", { alllistings });
+  let filter = {};
+  let selectedCategory = "all";
+  if (category && validCategories.includes(category)) {
+    filter.category = category;
+    selectedCategory = category;
+  }
+
+  const alllistings = await Listing.find(filter);
+  res.render("listings/index.ejs", { alllistings, selectedCategory });
 };
 
 //  render new form for listing
@@ -47,10 +67,9 @@ module.exports.renderEditForm = async (req, res) => {
     res.redirect("/listings");
   }
 
-  let OrignalImageUrl=listing.image.url;
- OrignalImageUrl = OrignalImageUrl.replace("/upload","/upload/w_250");
-  res.render("listings/edit.ejs", { listing ,OrignalImageUrl});
-  
+  let OrignalImageUrl = listing.image.url;
+  OrignalImageUrl = OrignalImageUrl.replace("/upload", "/upload/w_250");
+  res.render("listings/edit.ejs", { listing, OrignalImageUrl });
 };
 //  update listing
 module.exports.updateListing = async (req, res) => {
@@ -67,7 +86,7 @@ module.exports.updateListing = async (req, res) => {
     listing.image = { url, filename };
     await listing.save();
   }
-  
+
   req.flash("success", "Listing updated successfully");
   res.redirect(`/listings/${id}`);
 };
