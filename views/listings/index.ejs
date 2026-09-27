@@ -4,6 +4,13 @@
 
 
 <div class="container-fluid">
+  <% if (!searchQuery && selectedCategory === "all") { %>
+    <div class="hero-strip text-center py-4 px-3 mt-3">
+      <h1 class="fw-bold">Find your perfect stay in Northern Pakistan</h1>
+      <p class="text-muted mb-0">From Hunza valleys to Naran meadows — book unique stays directly from local hosts.</p>
+    </div>
+  <% } %>
+
   <div class="index-filter-bar">
     <div class="filter-carousel">
       <button class="filter-arrow filter-arrow-left" type="button" aria-label="Show previous filters">
@@ -85,7 +92,7 @@
     </div>
   <% } %>
 
-  <div class="row g-6">
+  <div class="row gx-4 gy-4">
 
     <% for(let listing of alllistings){ %>
 
@@ -101,6 +108,7 @@
               <b>
                 <%= listing.title %>
               </b><br>
+              <small class="text-muted"><%= listing.location %>, <%= listing.country %></small><br>
               <span class="listing-price" data-base-price="<%= listing.price %>">Rs <%= listing.price.toLocaleString("en-PK") %>/night</span>
             </p>
           </div>

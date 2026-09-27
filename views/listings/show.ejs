@@ -15,20 +15,21 @@
     <div class="card h-100 listing-card">
       <img src="<%= listing.image.url %>" class="card-img-top show-img" alt="listing_image" />
       <div class="card-body">
-        <p class="card-text"> owned by <i>
-            <%= listing.owner.username%>
-          </i> </p>
-        <p class="card-text">
-          <%= listing.description %>
+        <p class="text-muted mb-1">
+          <i class="fa-solid fa-location-dot"></i>
+          <%= listing.location %>, <%= listing.country %>
         </p>
-        <p class="card-text"> &#8360; <%= listing.price.toLocaleString("en-pk") %>
-        </p>
-        <p class="card-text">
-          <%= listing.location %>
-        </p>
-        <p class="card-text">
-          <%= listing.country %>
-        </p>
+        <% if (listing.reviews.length > 0) { %>
+          <% const avgRating = (listing.reviews.reduce((sum, r) => sum + r.rating, 0) / listing.reviews.length).toFixed(1); %>
+          <p class="mb-2">
+            <i class="fa-solid fa-star" style="color: #fe424d;"></i>
+            <strong><%= avgRating %></strong>
+            <span class="text-muted">· <%= listing.reviews.length %> review<%= listing.reviews.length > 1 ? "s" : "" %></span>
+          </p>
+        <% } %>
+        <h4 class="fw-bold mb-2">Rs <%= listing.price.toLocaleString("en-PK") %> <span class="text-muted fs-6 fw-normal">/ night</span></h4>
+        <p class="card-text"><%= listing.description %></p>
+        <p class="card-text text-muted"><small>Hosted by <i><%= listing.owner.username %></i></small></p>
       </div>
       <hr>
     </div>
@@ -120,11 +121,11 @@
         <div class="mb-3">
           <label class="form-label">Rating</label><br>
           <div class="star-rating">
-            <label><input type="radio" name="review[rating]" value="1"> ⭐</label>
-            <label><input type="radio" name="review[rating]" value="2"> ⭐⭐</label>
-            <label><input type="radio" name="review[rating]" value="3" checked> ⭐⭐⭐</label>
-            <label><input type="radio" name="review[rating]" value="4"> ⭐⭐⭐⭐</label>
-            <label><input type="radio" name="review[rating]" value="5"> ⭐⭐⭐⭐⭐</label>
+            <label><input type="radio" name="review[rating]" value="5"><i class="fa-solid fa-star"></i></label>
+            <label><input type="radio" name="review[rating]" value="4"><i class="fa-solid fa-star"></i></label>
+            <label><input type="radio" name="review[rating]" value="3" checked><i class="fa-solid fa-star"></i></label>
+            <label><input type="radio" name="review[rating]" value="2"><i class="fa-solid fa-star"></i></label>
+            <label><input type="radio" name="review[rating]" value="1"><i class="fa-solid fa-star"></i></label>
           </div>
         </div>
 
@@ -156,7 +157,7 @@
           <%= review.comment %>
         </p>
         <small class="text-muted">
-          <% for(let i=0; i<review.rating; i++){ %> ⭐ <% } %>
+          <% for (let i = 1; i <= 5; i++) { %><i class="fa-solid fa-star" style="color: <%= i <= review.rating ? '#fe424d' : '#e0e0e0' %>;"></i><% } %>
           | Posted on <%= review.createdAt.toDateString() %>
         </small>
         <form method="POST" action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE" class="mt-2">

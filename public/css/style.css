@@ -259,6 +259,52 @@ img {
   padding: clamp(0.75rem, 2vw, 1rem);
 }
 
+/* Listing card hover lift */
+.listing-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.listing-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+}
+
+/* Hero strip */
+.hero-strip {
+  background: linear-gradient(135deg, #fff5f5 0%, #ffffff 100%);
+  border-radius: 1rem;
+}
+
+.hero-strip h1 {
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+/* Star rating input (DOM order 5→1 with row-reverse = visual 1→5) */
+.star-rating {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  gap: 0.25rem;
+}
+
+.star-rating input {
+  display: none;
+}
+
+.star-rating .fa-star {
+  font-size: 1.5rem;
+  color: #ddd;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.star-rating label:has(input:checked) .fa-star,
+.star-rating label:has(input:checked) ~ label .fa-star,
+.star-rating label:hover .fa-star,
+.star-rating label:hover ~ label .fa-star {
+  color: #fe424d;
+}
+
 /* Card Responsiveness */
 .card {
   overflow: hidden;
