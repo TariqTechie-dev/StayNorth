@@ -1,8 +1,8 @@
 const Listing = require("../models/listing.js");
 
-// render all listings (with optional category filter)
+// render all listings (with optional category filter + text search)
 module.exports.index = async (req, res) => {
-  const { category } = req.query;
+  const { category, search } = req.query;
   const validCategories = [
     "trending",
     "rooms",
@@ -23,8 +23,16 @@ module.exports.index = async (req, res) => {
     selectedCategory = category;
   }
 
+  let searchQuery = "";
+  if (search && search.trim() !== "") {
+    searchQuery = search.trim();
+    const safeSearch = searchQuery.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const regex = new RegExp(safeSearch, "i");
+    filter.$or = [{ title: regex }, { location: regex }, { country: regex }];
+  }
+
   const alllistings = await Listing.find(filter);
-  res.render("listings/index.ejs", { alllistings, selectedCategory });
+  res.render("listings/index.ejs", { alllistings, selectedCategory, searchQuery });
 };
 
 //  render new form for listing

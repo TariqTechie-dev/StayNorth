@@ -1,4 +1,5 @@
 <% layout("layouts/boilerplate") %>
+<% const searchQs = searchQuery ? `search=${encodeURIComponent(searchQuery)}` : ""; %>
 
 
 
@@ -10,47 +11,47 @@
       </button>
 
       <div class="filter-scroll" aria-label="Listing categories">
-        <a href="/listings" class="filter-item <%= selectedCategory === 'all' ? 'active' : '' %>">
+        <a href="/listings<%= searchQs ? `?${searchQs}` : "" %>" class="filter-item <%= selectedCategory === 'all' ? 'active' : '' %>">
           <i class="fa-solid fa-border-all"></i>
           <span>All</span>
         </a>
-        <a href="/listings?category=trending" class="filter-item <%= selectedCategory === 'trending' ? 'active' : '' %>">
+        <a href="/listings?category=trending<%= searchQs ? `&${searchQs}` : "" %>" class="filter-item <%= selectedCategory === 'trending' ? 'active' : '' %>">
           <i class="fa-solid fa-fire"></i>
           <span>Trending</span>
         </a>
-        <a href="/listings?category=rooms" class="filter-item <%= selectedCategory === 'rooms' ? 'active' : '' %>">
+        <a href="/listings?category=rooms<%= searchQs ? `&${searchQs}` : "" %>" class="filter-item <%= selectedCategory === 'rooms' ? 'active' : '' %>">
           <i class="fa-solid fa-bed"></i>
           <span>Rooms</span>
         </a>
-        <a href="/listings?category=iconic-cities" class="filter-item <%= selectedCategory === 'iconic-cities' ? 'active' : '' %>">
+        <a href="/listings?category=iconic-cities<%= searchQs ? `&${searchQs}` : "" %>" class="filter-item <%= selectedCategory === 'iconic-cities' ? 'active' : '' %>">
           <i class="fa-solid fa-city"></i>
           <span>Iconic cities</span>
         </a>
-        <a href="/listings?category=mountains" class="filter-item <%= selectedCategory === 'mountains' ? 'active' : '' %>">
+        <a href="/listings?category=mountains<%= searchQs ? `&${searchQs}` : "" %>" class="filter-item <%= selectedCategory === 'mountains' ? 'active' : '' %>">
           <i class="fa-solid fa-mountain-sun"></i>
           <span>Mountains</span>
         </a>
-        <a href="/listings?category=castles" class="filter-item <%= selectedCategory === 'castles' ? 'active' : '' %>">
+        <a href="/listings?category=castles<%= searchQs ? `&${searchQs}` : "" %>" class="filter-item <%= selectedCategory === 'castles' ? 'active' : '' %>">
           <i class="fa-brands fa-fort-awesome"></i>
           <span>Castles</span>
         </a>
-        <a href="/listings?category=amazing-pools" class="filter-item <%= selectedCategory === 'amazing-pools' ? 'active' : '' %>">
+        <a href="/listings?category=amazing-pools<%= searchQs ? `&${searchQs}` : "" %>" class="filter-item <%= selectedCategory === 'amazing-pools' ? 'active' : '' %>">
           <i class="fa-solid fa-person-swimming"></i>
           <span>Amazing pools</span>
         </a>
-        <a href="/listings?category=camping" class="filter-item <%= selectedCategory === 'camping' ? 'active' : '' %>">
+        <a href="/listings?category=camping<%= searchQs ? `&${searchQs}` : "" %>" class="filter-item <%= selectedCategory === 'camping' ? 'active' : '' %>">
           <i class="fa-solid fa-campground"></i>
           <span>Camping</span>
         </a>
-        <a href="/listings?category=farms" class="filter-item <%= selectedCategory === 'farms' ? 'active' : '' %>">
+        <a href="/listings?category=farms<%= searchQs ? `&${searchQs}` : "" %>" class="filter-item <%= selectedCategory === 'farms' ? 'active' : '' %>">
           <i class="fa-solid fa-tractor"></i>
           <span>Farms</span>
         </a>
-        <a href="/listings?category=arctic" class="filter-item <%= selectedCategory === 'arctic' ? 'active' : '' %>">
+        <a href="/listings?category=arctic<%= searchQs ? `&${searchQs}` : "" %>" class="filter-item <%= selectedCategory === 'arctic' ? 'active' : '' %>">
           <i class="fa-solid fa-snowflake"></i>
           <span>Arctic</span>
         </a>
-        <a href="/listings?category=boats" class="filter-item <%= selectedCategory === 'boats' ? 'active' : '' %>">
+        <a href="/listings?category=boats<%= searchQs ? `&${searchQs}` : "" %>" class="filter-item <%= selectedCategory === 'boats' ? 'active' : '' %>">
           <i class="fa-solid fa-sailboat"></i>
           <span>Boats</span>
         </a>
@@ -69,6 +70,20 @@
       </label>
     </div>
   </div>
+
+  <% if (searchQuery) { %>
+    <div class="d-flex align-items-center justify-content-between mt-3 mb-2">
+      <p class="mb-0 text-muted">Showing results for "<strong><%= searchQuery %></strong>"</p>
+      <a href="/listings" class="btn btn-sm btn-outline-dark">Clear search</a>
+    </div>
+  <% } %>
+
+  <% if (alllistings.length === 0) { %>
+    <div class="text-center py-5">
+      <h4>No stays found</h4>
+      <p class="text-muted">Try a different destination or <a href="/listings">browse all stays</a>.</p>
+    </div>
+  <% } %>
 
   <div class="row g-6">
 

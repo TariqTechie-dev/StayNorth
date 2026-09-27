@@ -9,6 +9,7 @@
 - 🔐 User authentication — sign up, log in, log out (Passport.js)
 - 🏠 Full CRUD for stay listings — only the owner can edit or delete
 - 🏷️ Filter stays by category
+- 🔎 Search stays by destination (title, location, country)
 - 🖼️ Image uploads with Cloudinary
 - ⭐ Reviews with star ratings (only the author can delete)
 - 🗺️ Interactive location map (Leaflet + OpenStreetMap)
