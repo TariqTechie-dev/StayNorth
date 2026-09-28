@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-lg bg-body-light border-bottom sticky-top">
+<nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top">
   <div class="container-fluid navbar-shell">
-    <a class="navbar-brand" href="/listings"><i class="fa-regular fa-compass"></i> StayNorth</a>
+    <a class="navbar-brand" href="/listings"><img src="/images/logo.svg" alt="StayNorth logo" class="navbar-logo">StayNorth</a>
     <div class="navbar-search-wrap">
       <form class="navbar-search" role="search" action="/listings" method="GET">
         <% if (typeof selectedCategory !== "undefined" && selectedCategory !== "all") { %>
@@ -30,7 +30,7 @@
       </div>
 
       <div class="navbar-nav ms-auto">
-         <a class="nav-link" href="/listings/new">List your stay</a>
+         <a class="nav-link" href="/listings/new"><i class="fa-solid fa-plus"></i> List your stay</a>
         <%if (!currentUser) { %>
         <a class="nav-link " href="/signup"><b>Signup</b></a>
         <a class="nav-link" href="/login"><b>Login</b></a>

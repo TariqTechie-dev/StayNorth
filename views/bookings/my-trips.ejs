@@ -31,10 +31,10 @@
             <% } else { %>
             <h2 class="fs-5">Listing no longer available</h2>
             <% } %>
-            <p class="mb-1">Check-in: <%= new Date(booking.checkIn).toLocaleDateString("en-PK") %></p>
-            <p class="mb-1">Check-out: <%= new Date(booking.checkOut).toLocaleDateString("en-PK") %></p>
-            <p class="mb-1">Guests: <%= booking.guests %></p>
-            <p class="mb-2">Total: Rs <%= booking.totalPrice.toLocaleString("en-PK") %></p>
+            <p class="mb-1"><i class="fa-solid fa-calendar-days text-muted"></i> Check-in: <%= new Date(booking.checkIn).toLocaleDateString("en-PK") %></p>
+            <p class="mb-1"><i class="fa-solid fa-calendar-days text-muted"></i> Check-out: <%= new Date(booking.checkOut).toLocaleDateString("en-PK") %></p>
+            <p class="mb-1"><i class="fa-solid fa-users text-muted"></i> Guests: <%= booking.guests %></p>
+            <p class="mb-2"><i class="fa-solid fa-tag text-muted"></i> Total: Rs <%= booking.totalPrice.toLocaleString("en-PK") %></p>
             <% if (booking.status === "confirmed") { %>
             <span class="badge bg-success">Confirmed</span>
             <% } else { %>

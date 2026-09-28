@@ -6,7 +6,7 @@
       <form method="POST" action="/listings/<%= listing._id %>?_method=PUT" enctype="multipart/form-data" novalidate
         class="needs-validation">
         <div class="mb-3">
-          <label for="title" class="form-label">Title</label>
+          <label for="title" class="form-label"><i class="fa-solid fa-heading text-muted me-1"></i>Title</label>
           <input type="text" name="listing[title]" id="title" value="<%= listing.title %>" required
             class="form-control" />
           <div class="valid-feedback">Title looks good!</div>
@@ -14,7 +14,7 @@
         </div>
 
         <div class="mb-3">
-          <label for="description" class="form-label">Description</label>
+          <label for="description" class="form-label"><i class="fa-solid fa-align-left text-muted me-1"></i>Description</label>
           <textarea name="listing[description]" id="description" required class="form-control">
           <%= listing.description %></textarea>
           <div class="valid-feedback">Description looks good!</div>
@@ -26,13 +26,13 @@
          <img src="<%=OrignalImageUrl %>" class="img-fluid" style="max-width: 100%; height: auto;">
         </div>
         <div class="mb-3">
-          <label for="image" class="form-label">Upload New Image</label>
+          <label for="image" class="form-label"><i class="fa-solid fa-image text-muted me-1"></i>Upload new image</label>
           <input type="file" name="listing[image]" id="image" class="form-control" />
         </div>
 
         <div class="row">
           <div class="mb-3 col-12 col-md-4">
-            <label for="price" class="form-label">Price</label>
+            <label for="price" class="form-label"><i class="fa-solid fa-tag text-muted me-1"></i>Price</label>
             <input type="number" name="listing[price]" id="price" value="<%= listing.price %>" min="0" required
               class="form-control" />
             <div class="valid-feedback">Price looks good!</div>
@@ -40,7 +40,7 @@
           </div>
 
           <div class="mb-3 col-12 col-md-8">
-            <label for="location" class="form-label">Location</label>
+            <label for="location" class="form-label"><i class="fa-solid fa-location-dot text-muted me-1"></i>Location</label>
             <input type="text" name="listing[location]" id="location" value="<%= listing.location %>" required
               class="form-control" />
             <div class="valid-feedback">Location looks good!</div>
@@ -48,7 +48,7 @@
           </div>
 
           <div class="mb-3 col-12">
-            <label for="country" class="form-label">Country</label>
+            <label for="country" class="form-label"><i class="fa-solid fa-globe text-muted me-1"></i>Country</label>
             <input type="text" name="listing[country]" id="country" value="<%= listing.country %>" required
               class="form-control" />
             <div class="valid-feedback">Country looks good!</div>
@@ -56,7 +56,7 @@
           </div>
 
           <div class="mb-3 col-12">
-            <label for="category" class="form-label">Category</label>
+            <label for="category" class="form-label"><i class="fa-solid fa-layer-group text-muted me-1"></i>Category</label>
             <select name="listing[category]" id="category" required class="form-select">
               <option value="trending" <%= listing.category === "trending" ? "selected" : "" %>>Trending</option>
               <option value="rooms" <%= listing.category === "rooms" ? "selected" : "" %>>Rooms</option>

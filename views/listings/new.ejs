@@ -6,7 +6,7 @@
     <form method="post" action="/listings"  novalidate class="needs-validation" enctype="multipart/form-data">
 
       <div class="mb-3">
-          <label for="title" class="form-label">Title</label>
+          <label for="title" class="form-label"><i class="fa-solid fa-heading text-muted me-1"></i>Title</label>
           <input type="text" name="listing[title]" id="title" placeholder="Enter your title" required class="form-control">
           <div class="valid-feedback">Title looks good!</div>
           <div class="invalid-feedback"> Please provide a title</div>
@@ -14,7 +14,7 @@
 
 
       <div class="mb-3">
-          <label for="description" class="form-label">Description</label>
+          <label for="description" class="form-label"><i class="fa-solid fa-align-left text-muted me-1"></i>Description</label>
           <textarea name="listing[description]" id="description" placeholder="Enter your description" required class="form-control"></textarea>
             <div class="valid-feedback">Description looks good!</div>
             <div class="invalid-feedback"> Please provide a description</div>
@@ -22,35 +22,35 @@
 
      
       <div class="mb-3">
-          <label for="image" class="form-label">Upload listing image</label>
+          <label for="image" class="form-label"><i class="fa-solid fa-image text-muted me-1"></i>Upload listing image</label>
           <input type="file" name="listing[image]" id="image" required accept="image/*" class="form-control">
           <div class="invalid-feedback">Please choose an image for your listing</div>
       </div>
 
       <div class="row">
         <div class="mb-3 col-12 col-md-4">
-           <label for="price" class="form-label">Price</label>
+           <label for="price" class="form-label"><i class="fa-solid fa-tag text-muted me-1"></i>Price</label>
            <input type="number" name="listing[price]" id="price" placeholder="Enter your price" min="0" required class="form-control">
             <div class="valid-feedback">Price looks good!</div>
             <div class="invalid-feedback"> Please provide a valid price</div>
         </div>
 
         <div class="mb-3 col-12 col-md-8">
-            <label for="location" class="form-label">Location</label>
+            <label for="location" class="form-label"><i class="fa-solid fa-location-dot text-muted me-1"></i>Location</label>
             <input type="text" name="listing[location]" id="location" placeholder="Enter location" required class="form-control">
               <div class="valid-feedback">Location looks good!</div>
               <div class="invalid-feedback"> Please provide a location</div>
         </div>
 
             <div class="mb-3 col-12">
-              <label for="country" class="form-label">Country</label>
+              <label for="country" class="form-label"><i class="fa-solid fa-globe text-muted me-1"></i>Country</label>
               <input type="text" name="listing[country]" id="country" placeholder="Enter country" required class="form-control">
               <div class="valid-feedback">Country looks good!</div>
               <div class="invalid-feedback"> Please provide a country name</div>
             </div>
 
             <div class="mb-3 col-12">
-              <label for="category" class="form-label">Category</label>
+              <label for="category" class="form-label"><i class="fa-solid fa-layer-group text-muted me-1"></i>Category</label>
               <select name="listing[category]" id="category" required class="form-select">
                 <option value="" disabled selected>Select a category</option>
                 <option value="trending">Trending</option>

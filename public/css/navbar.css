@@ -178,3 +178,23 @@
     height: 2.15rem;
   }
 }
+
+/* StayNorth brand logo */
+.navbar-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-weight: 700;
+}
+
+.navbar-logo {
+  width: 30px;
+  height: 30px;
+  flex: 0 0 auto;
+}
+
+@media (max-width: 576px) {
+  .navbar-search-input {
+    font-size: 1rem; /* 16px — prevents iOS auto-zoom on focus */
+  }
+}

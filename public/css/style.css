@@ -80,6 +80,14 @@ footer {
   color: #222222;
   font-size: 1rem;
   font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.footer-logo {
+  width: 26px;
+  height: 26px;
 }
 
 .f-info-tagline {

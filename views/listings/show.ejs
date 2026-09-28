@@ -29,7 +29,7 @@
         <% } %>
         <h4 class="fw-bold mb-2">Rs <%= listing.price.toLocaleString("en-PK") %> <span class="text-muted fs-6 fw-normal">/ night</span></h4>
         <p class="card-text"><%= listing.description %></p>
-        <p class="card-text text-muted"><small>Hosted by <i><%= listing.owner.username %></i></small></p>
+        <p class="card-text text-muted"><small><i class="fa-solid fa-circle-user"></i> Hosted by <i><%= listing.owner.username %></i></small></p>
       </div>
     </div>
   </div>
@@ -41,17 +41,17 @@
       <form action="/listings/<%= listing._id %>/bookings" method="POST" novalidate class="needs-validation">
         <div class="row g-2 mt-2">
           <div class="col-6">
-            <label class="form-label" for="checkIn">Check-in</label>
+            <label class="form-label" for="checkIn"><i class="fa-solid fa-calendar-days text-muted"></i> Check-in</label>
             <input type="date" id="checkIn" name="booking[checkIn]" class="form-control" required min="<%= new Date().toISOString().split('T')[0] %>">
             <div class="invalid-feedback">Select a check-in date</div>
           </div>
           <div class="col-6">
-            <label class="form-label" for="checkOut">Check-out</label>
+            <label class="form-label" for="checkOut"><i class="fa-solid fa-calendar-days text-muted"></i> Check-out</label>
             <input type="date" id="checkOut" name="booking[checkOut]" class="form-control" required min="<%= new Date().toISOString().split('T')[0] %>">
             <div class="invalid-feedback">Select a check-out date</div>
           </div>
           <div class="col-12">
-            <label class="form-label" for="guests">Guests</label>
+            <label class="form-label" for="guests"><i class="fa-solid fa-users text-muted"></i> Guests</label>
             <input type="number" id="guests" name="booking[guests]" class="form-control" value="1" min="1" max="20" required>
             <div class="invalid-feedback">Enter number of guests (1-20)</div>
           </div>
