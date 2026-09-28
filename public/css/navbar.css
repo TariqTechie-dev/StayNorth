@@ -266,7 +266,7 @@
 
 /* Tiny phones (<360px): Explore becomes icon-only to save space.
    On 360px+ phones the text fits fine next to the brand and menu pill. */
-@media (max-width: 359.98px) {
+@media (max-width: 375px) {
   .explore-label {
     display: none;
   }
