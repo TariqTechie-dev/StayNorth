@@ -143,6 +143,25 @@
   }
 }
 
+/* Tablet (768-1199px): single-row navbar — brand+Explore left, compact
+   search centered inline, hamburger right. Below 768px the stacked
+   mobile layout above takes over. */
+@media (min-width: 768px) and (max-width: 1199.98px) {
+  .navbar-search-wrap {
+    order: 2;
+    width: auto;
+    flex: 1 1 auto;
+    max-width: 22rem;
+    margin-top: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .navbar-toggler {
+    order: 3;
+  }
+}
+
 @media (max-width: 768px) {
   .navbar-search {
     width: 100%;
@@ -204,6 +223,17 @@
 @media (max-width: 576px) {
   .navbar-search-input {
     font-size: 1rem; /* 16px — prevents iOS auto-zoom on focus */
+  }
+}
+
+/* Small phones: Explore becomes icon-only to save space */
+@media (max-width: 576px) {
+  .explore-label {
+    display: none;
+  }
+
+  .nav-left .nav-link .nav-ico {
+    margin-right: 0;
   }
 }
 
