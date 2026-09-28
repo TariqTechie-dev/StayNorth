@@ -43,8 +43,8 @@
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/TariqTechie-dev/WanderLust.git
-cd WanderLust
+git clone https://github.com/TariqTechie-dev/StayNorth.git
+cd StayNorth
 
 # 2. Install dependencies
 npm install
