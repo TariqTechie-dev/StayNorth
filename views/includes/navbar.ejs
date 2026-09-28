@@ -1,6 +1,9 @@
-<nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top">
+<nav class="navbar navbar-expand-xl bg-white border-bottom sticky-top">
   <div class="container-fluid navbar-shell">
-    <a class="navbar-brand" href="/listings"><img src="/images/logo.svg" alt="StayNorth logo" class="navbar-logo">StayNorth</a>
+    <div class="nav-left">
+      <a class="navbar-brand" href="/listings"><img src="/images/logo.svg" alt="StayNorth logo" class="navbar-logo">StayNorth</a>
+      <a class="nav-link" href="/listings" title="Browse all stays"><i class="fa-solid fa-compass nav-ico"></i>Explore</a>
+    </div>
     <div class="navbar-search-wrap">
       <form class="navbar-search" role="search" action="/listings" method="GET">
         <% if (typeof selectedCategory !== "undefined" && selectedCategory !== "all") { %>
@@ -25,10 +28,6 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav me-auto">
-        <a class="nav-link" href="/listings" title="Browse all stays"><i class="fa-solid fa-compass nav-ico"></i>Explore</a>
-      </div>
-
       <div class="navbar-nav ms-auto">
          <a class="nav-link" href="/listings/new" title="List your property on StayNorth"><i class="fa-solid fa-plus nav-ico"></i>List your stay</a>
         <%if (!currentUser) { %>

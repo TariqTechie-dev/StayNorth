@@ -113,7 +113,7 @@
   outline-offset: 2px;
 }
 
-@media (max-width: 992px) {
+@media (max-width: 1199.98px) {
   .navbar {
     padding: 0.6rem 0;
   }
@@ -193,6 +193,14 @@
   flex: 0 0 auto;
 }
 
+/* Left zone: brand + Explore link */
+.nav-left {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
 @media (max-width: 576px) {
   .navbar-search-input {
     font-size: 1rem; /* 16px — prevents iOS auto-zoom on focus */
@@ -205,6 +213,7 @@
   align-items: center;
   border-radius: 999px;
   padding: 0.45rem 0.8rem;
+  white-space: nowrap;
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
@@ -224,22 +233,32 @@
   transform: translateY(-1px);
 }
 
-/* Desktop: keep the search in the normal flex flow so it never overlaps the nav links */
-@media (min-width: 993px) {
+/* Desktop (1200px+): true 3-zone navbar.
+   Left and right zones take equal flex space, so the search sits at exact
+   page center. Below 1200px the hamburger menu takes over. */
+@media (min-width: 1200px) {
+  .nav-left {
+    flex: 1 1 0;
+    justify-content: flex-start;
+  }
+
   .navbar-search-wrap {
     position: static;
     top: auto;
     left: auto;
     transform: none;
     z-index: auto;
-    flex: 1 1 auto;
+    flex: 0 0 auto;
+    width: min(26rem, 100%);
     min-width: 0;
-    display: flex;
-    justify-content: center;
-    padding: 0 1rem;
   }
 
   .navbar-search {
-    width: min(26rem, 100%);
+    width: 100%;
+  }
+
+  .navbar-expand-xl .navbar-collapse {
+    flex: 1 1 0;
+    justify-content: flex-end;
   }
 }
