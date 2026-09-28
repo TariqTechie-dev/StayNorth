@@ -26,19 +26,19 @@
 
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav me-auto">
-        <a class="nav-link" href="/listings">Explore</a>
+        <a class="nav-link" href="/listings" title="Browse all stays"><i class="fa-solid fa-compass nav-ico"></i>Explore</a>
       </div>
 
       <div class="navbar-nav ms-auto">
-         <a class="nav-link" href="/listings/new"><i class="fa-solid fa-plus"></i> List your stay</a>
+         <a class="nav-link" href="/listings/new" title="List your property on StayNorth"><i class="fa-solid fa-plus nav-ico"></i>List your stay</a>
         <%if (!currentUser) { %>
-        <a class="nav-link " href="/signup"><b>Signup</b></a>
-        <a class="nav-link" href="/login"><b>Login</b></a>
+        <a class="nav-link " href="/signup" title="Create a new account"><i class="fa-solid fa-user-plus nav-ico"></i><b>Signup</b></a>
+        <a class="nav-link" href="/login" title="Log in to your account"><i class="fa-solid fa-right-to-bracket nav-ico"></i><b>Login</b></a>
        <% } %> 
        <% if(currentUser) {%>
-        <a class="nav-link" href="/bookings">My Trips</a>
-        <a class="nav-link" href="/bookings/manage">Manage Bookings</a>
-        <a class="nav-link" href="/logout"><b>Logout</b></a>
+        <a class="nav-link" href="/bookings" title="View your upcoming trips"><i class="fa-solid fa-suitcase-rolling nav-ico"></i>My Trips</a>
+        <a class="nav-link" href="/bookings/manage" title="Manage bookings on your listings"><i class="fa-solid fa-calendar-check nav-ico"></i>Manage Bookings</a>
+        <a class="nav-link" href="/logout" title="Log out of StayNorth"><i class="fa-solid fa-right-from-bracket nav-ico"></i><b>Logout</b></a>
         <% } %>
       </div>
     </div>
