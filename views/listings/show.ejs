@@ -156,9 +156,11 @@
           <% for (let i = 1; i <= 5; i++) { %><i class="fa-solid fa-star" style="color: <%= i <= review.rating ? '#fe424d' : '#e0e0e0' %>;"></i><% } %>
           | Posted on <%= review.createdAt.toDateString() %>
         </small>
+        <% if (currentUser && review.author && currentUser._id.equals(review.author._id)) { %>
         <form method="POST" action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE" class="mt-2">
           <button class="btn btn-sm btn-outline-danger">Delete</button>
         </form>
+        <% } %>
       </div>
       <% } %>
     </div>  <% } %>
