@@ -5,10 +5,19 @@
 
   // Carousel arrows (active filter is now rendered by the server)
   if (filterScroll && filterArrowLeft && filterArrowRight) {
+    const setArrowState = (arrow, isVisible) => {
+      arrow.classList.toggle('is-hidden', !isVisible);
+      arrow.disabled = !isVisible;
+      arrow.setAttribute('aria-hidden', String(!isVisible));
+    };
+
     const updateFilterArrows = () => {
       const maxScrollLeft = filterScroll.scrollWidth - filterScroll.clientWidth;
-      filterArrowLeft.classList.toggle('is-hidden', filterScroll.scrollLeft <= 0);
-      filterArrowRight.classList.toggle('is-hidden', filterScroll.scrollLeft >= maxScrollLeft - 1);
+      const hasOverflow = maxScrollLeft > 1; // ignore sub-pixel rounding noise
+      const atStart = filterScroll.scrollLeft <= 1;
+      const atEnd = filterScroll.scrollLeft >= maxScrollLeft - 1;
+      setArrowState(filterArrowLeft, hasOverflow && !atStart);
+      setArrowState(filterArrowRight, hasOverflow && !atEnd);
     };
 
     const scrollFilters = (direction) => {
@@ -20,8 +29,13 @@
 
     filterArrowLeft.addEventListener('click', () => scrollFilters(-1));
     filterArrowRight.addEventListener('click', () => scrollFilters(1));
-    filterScroll.addEventListener('scroll', updateFilterArrows);
+    filterScroll.addEventListener('scroll', updateFilterArrows, { passive: true });
     window.addEventListener('resize', updateFilterArrows);
+
+    // Icon webfonts load async and change item widths — re-check once they're ready
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(updateFilterArrows);
+    }
 
     updateFilterArrows();
   }
