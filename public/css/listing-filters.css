@@ -51,7 +51,8 @@
   align-items: center;
   justify-content: center;
   transform: translateY(-50%);
-  transition: opacity 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  visibility: visible;
+  transition: opacity 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease, visibility 0s;
 }
 
 .filter-arrow:hover {
@@ -69,7 +70,9 @@
 
 .filter-arrow.is-hidden {
   opacity: 0;
+  visibility: hidden;
   pointer-events: none;
+  transition: opacity 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease, visibility 0s linear 0.2s;
 }
 
 .filter-item {
